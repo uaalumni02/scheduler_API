@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const isValidService = (service) => {
-   const regExp = /[a-zA-Z0-9\x20]{5,25}/i
+   const regExp = /(?! )[A-Za-z\s]/i
    return regExp.test(service)
  };
 
