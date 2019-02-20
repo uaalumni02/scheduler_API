@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import moment from 'moment';
 
 import Services from './models/service';
 
@@ -20,9 +21,13 @@ mongoose.connect(DB_URL, (err) => {
 })
 
    app.post('/services', (req, res, next) => {
+    const currentdate = req.body.appointmentDate;
+    const appointmentTimestamp = moment(currentdate, 'YYYY-MM-DD hh:mmA').unix();
     const serviceInformation = new Services({
         _id: new mongoose.Types.ObjectId(),
-        Services: req.body.Services
+        Services: req.body.Services,
+        Price: req.body.Price,
+        appointmentDate: appointmentTimestamp,
     });
     serviceInformation
         .save()
