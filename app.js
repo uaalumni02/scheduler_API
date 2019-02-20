@@ -3,14 +3,19 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import moment from 'moment';
+import cors from 'cors';
 
 import Services from './models/service';
+
+//import routes
+import serviceRoutes from './routes/service.route';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cors());
 const DB_URL = process.env.MONGO_URL;
 
 // Connect to mongoose
@@ -19,6 +24,9 @@ mongoose.connect(DB_URL, (err) => {
         return console.log('Unable to Connect to MongoDB')
     return console.log('Connection Successful')
 })
+
+//middleware to utilize routes
+app.use('/services', serviceRoutes);
 
 //send service data to db
    app.post('/services', (req, res, next) => {
@@ -48,19 +56,5 @@ mongoose.connect(DB_URL, (err) => {
         });
 });
 
-//get all service data
-app.get ('/services', (req, res) => {
-    Services.find()
-        .exec()
-        .then(docs => {
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-});
 
 app.listen(3000, () => console.log('server is running'));
