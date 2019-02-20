@@ -20,6 +20,7 @@ mongoose.connect(DB_URL, (err) => {
     return console.log('Connection Successful')
 })
 
+//send service data to db
    app.post('/services', (req, res, next) => {
     const currentdate = req.body.appointmentDate;
     const appointmentTimestamp = moment(currentdate, 'YYYY-MM-DD hh:mmA').unix();
@@ -47,5 +48,19 @@ mongoose.connect(DB_URL, (err) => {
         });
 });
 
+//get all service data
+app.get ('/services', (req, res) => {
+    Services.find()
+        .exec()
+        .then(docs => {
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
 
 app.listen(3000, () => console.log('server is running'));
