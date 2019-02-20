@@ -12,6 +12,7 @@ router.addServices = ('/services', (req, res, next) => {
     const appointmentTimestamp = moment(currentdate, 'YYYY-MM-DD hh:mmA').unix();
     const serviceInformation = new Services({
         _id: new mongoose.Types.ObjectId(),
+        name: req.body.name,
         Services: req.body.Services,
         Price: req.body.Price,
         appointmentDate: appointmentTimestamp,

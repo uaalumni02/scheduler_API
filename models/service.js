@@ -12,18 +12,33 @@ const isValidPrice = (price) => {
    return regExp.test(price)
  };
 
+ const isValidCustomerName = (name) => {
+   const regExp = /^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$/i
+   return regExp.test(name)
+ };
+
 const serviceInformationSchema = mongoose.Schema({
 
    _id: mongoose.Schema.Types.ObjectId,
+   name: {
+      type: String, 
+      required: [true, 'name is required'], 
+      min:2, 
+      max: 12,
+      validate: [isValidCustomerName, 'Please enter valid customer name'],
+  },
+
    Services: {
       type: String,
       required: [true, 'Service is required'],
       validate: [isValidService, 'Please enter a valid Service'],
    },
+
    appointmentDate: {
       type: Number,
       required: true 
   },
+  
    Price: {
       type: Number,
       required: [true, 'Price is required'],
