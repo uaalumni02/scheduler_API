@@ -12,5 +12,9 @@ const router = express.Router();
 router.post('/', serviceController.addServices);
 //shows all data
 router.get('/', serviceController.getAllServices);
+//delete data
+router.delete('/:id', serviceController.deleteService);
+//edit service
+router.patch('/:id', serviceController.editService);
 
 export default router;

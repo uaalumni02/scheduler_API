@@ -8,14 +8,11 @@ const router = express.Router();
 
 //send service data to db
 router.addServices = ('/services', (req, res, next) => {
-    const currentdate = req.body.appointmentDate;
-    const appointmentTimestamp = moment(currentdate, 'YYYY-MM-DD hh:mmA').unix();
     const serviceInformation = new Services({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         Services: req.body.Services,
         Price: req.body.Price,
-        appointmentDate: appointmentTimestamp,
     });
     serviceInformation
         .save()
@@ -42,6 +39,44 @@ router.getAllServices = ('/services', (req, res) => {
         .exec()
         .then(docs => {
             res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+//remove service from the db
+router.deleteService = ('/:id', (req, res) => {
+    const id = req.params.id;
+    Services.findOneAndDelete({ '_id': id })
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
+
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+//edit service
+router.editService = ('/:id', (req, res) => {
+    const id = req.params.customerId;
+    const updateOps = { 
+        name: req.body.name,
+        Services: req.body.Services,
+        Price: req.body.Price,
+    };
+    Services.update({ $set: updateOps })
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
         })
         .catch(err => {
             console.log(err);

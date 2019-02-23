@@ -30,5 +30,4 @@ mongoose.connect(DB_URL, (err) => {
 app.use('/services', serviceRoutes);
  
 
-
 app.listen(3000, () => console.log('server is running'));
