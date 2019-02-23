@@ -8,8 +8,10 @@ import cors from 'cors';
 //import models
 import Services from './models/service';
 
+
 //import routes
 import serviceRoutes from './routes/service.route';
+import appointmentRoutes from './routes/appointment.route';
 
 const app = express();
 
@@ -28,6 +30,9 @@ mongoose.connect(DB_URL, (err) => {
 
 //middleware to utilize routes
 app.use('/services', serviceRoutes);
+app.use('/appointments', appointmentRoutes);
+
+
  
 
 app.listen(3000, () => console.log('server is running'));
