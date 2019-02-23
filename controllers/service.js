@@ -10,7 +10,6 @@ const router = express.Router();
 router.addServices = ('/services', (req, res, next) => {
     const serviceInformation = new Services({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
         Services: req.body.Services,
         Price: req.body.Price,
     });
@@ -69,7 +68,6 @@ router.deleteService = ('/:id', (req, res) => {
 router.editService = ('/:id', (req, res) => {
     const id = req.params.customerId;
     const updateOps = { 
-        name: req.body.name,
         Services: req.body.Services,
         Price: req.body.Price,
     };
