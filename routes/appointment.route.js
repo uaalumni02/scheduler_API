@@ -11,4 +11,7 @@ const router = express.Router();
 // Insert JSON straight into MongoDB
 router.post('/', appointmentController.addAppointment);
 
+//get all appts
+router.get('/', appointmentController.getAllAppointments);
+
 export default router;

@@ -33,6 +33,20 @@ router.addAppointment = ('/', (req, res, next) => {
     });
 });
 
+//show all appts
+router.getAllAppointments = ('/appointments', (req, res) => {
+    Appointments.find()
+        .exec()
+        .then(docs => {
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
 
 
 
