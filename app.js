@@ -11,6 +11,8 @@ import appointmentRoutes from './routes/appointment.route';
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -30,4 +32,4 @@ mongoose.connect(DB_URL, (err) => {
 })
  
 
-app.listen(3000, () => console.log('server is running'));
+app.listen(port, () => console.log('server is running'));
