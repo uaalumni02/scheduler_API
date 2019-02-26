@@ -2,9 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import moment from 'moment';
 
+
 import Appointments from '../models/appointment';
 
 const router = express.Router();
+
 
 //add appts
 router.addAppointment = ('/', (req, res, next) => {
