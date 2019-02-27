@@ -16,6 +16,7 @@ router.addAppointment = ('/', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         appointmentDate: appointmentTimestamp,
+        services: req.body.services
     });
     console.log(appointmentDate)
     appointmentInformation

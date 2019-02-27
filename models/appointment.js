@@ -6,10 +6,10 @@ const isValidCustomerName = (name) => {
   return regExp.test(name)
 };
 
-// const isValidAppointment = (appointment) => {
-//   const regExp = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/i;
-//   return regExp.test(appointment)
-// };
+const isValidService = (service) => {
+  const regExp = /(?! )[A-Za-z\s]/i
+  return regExp.test(service)
+};
 
 const appointmentInformationSchema = mongoose.Schema({
 
@@ -24,6 +24,12 @@ const appointmentInformationSchema = mongoose.Schema({
   appointmentDate: {
     type: Number,
     required: true 
+},
+
+services: {
+  type: String,
+  required: [true, 'Service is required'],
+  validate: [isValidService, 'Please enter a valid Service'],
 },
 
 });
