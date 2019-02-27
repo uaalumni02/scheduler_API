@@ -12,6 +12,11 @@ const isValidPrice = (price) => {
    return regExp.test(price)
  };
 
+ const isValidTime = (time) => {
+   const regExp = /[1-9]{1,2}[:.,-]?/i
+   return regExp.test(time)
+ };
+
 
 const serviceInformationSchema = mongoose.Schema({
 
@@ -26,6 +31,12 @@ const serviceInformationSchema = mongoose.Schema({
       type: Number,
       required: [true, 'Price is required'],
       validate: [isValidPrice, 'Please enter a valid Price'],
+   },
+
+   time: {
+      type: Number,
+      required: [true, 'Time is required'],
+      validate: [isValidTime, 'Please enter a valid Time'],
    },
 });
 
