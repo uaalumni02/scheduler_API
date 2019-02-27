@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import moment from 'moment';
+import Joi from 'joi';
 
 
 import Appointments from '../models/appointment';

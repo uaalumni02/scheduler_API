@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 
+
 //import routes
 import serviceRoutes from './routes/service.route';
 import appointmentRoutes from './routes/appointment.route';

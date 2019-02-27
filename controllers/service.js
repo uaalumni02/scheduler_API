@@ -5,6 +5,7 @@ import services from '../models/service';
 
 const router = express.Router();
 
+
 //send service data to db
 router.addServices = ('/services', (req, res, next) => {
     const serviceInformation = new services({
@@ -30,6 +31,7 @@ router.addServices = ('/services', (req, res, next) => {
             res.status(500).json({ error: err })
         });
 });
+
 
 
 //get all service data
@@ -67,7 +69,7 @@ router.deleteService = ('/:id', (req, res) => {
 //edit service
 router.editService = ('/:id', (req, res) => {
     const id = req.params.customerId;
-    const updateOps = { 
+    const updateOps = {
         services: req.body.services,
         price: req.body.price,
         time: req.body.time

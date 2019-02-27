@@ -28,7 +28,7 @@ const serviceInformationSchema = mongoose.Schema({
    },
   
    price: {
-      type: Number,
+      type: String,
       required: [true, 'Price is required'],
       validate: [isValidPrice, 'Please enter a valid Price'],
    },
