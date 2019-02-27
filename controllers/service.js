@@ -11,6 +11,7 @@ router.addServices = ('/services', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         services: req.body.services,
         price: req.body.price,
+        time: req.body.time
     });
     serviceInformation
         .save()
