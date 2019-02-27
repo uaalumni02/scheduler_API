@@ -1,16 +1,16 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import Services from '../models/service';
+import services from '../models/service';
 
 const router = express.Router();
 
 //send service data to db
 router.addServices = ('/services', (req, res, next) => {
-    const serviceInformation = new Services({
+    const serviceInformation = new services({
         _id: new mongoose.Types.ObjectId(),
-        Services: req.body.Services,
-        Price: req.body.Price,
+        services: req.body.services,
+        price: req.body.price,
     });
     serviceInformation
         .save()
@@ -33,7 +33,7 @@ router.addServices = ('/services', (req, res, next) => {
 
 //get all service data
 router.getAllServices = ('/services', (req, res) => {
-    Services.find()
+    services.find()
         .exec()
         .then(docs => {
             res.status(200).json(docs);
@@ -49,7 +49,7 @@ router.getAllServices = ('/services', (req, res) => {
 //remove service from the db
 router.deleteService = ('/:id', (req, res) => {
     const id = req.params.id;
-    Services.findOneAndDelete({ '_id': id })
+    services.findOneAndDelete({ '_id': id })
         .exec()
         .then(result => {
             res.status(200).json(result);
@@ -67,10 +67,10 @@ router.deleteService = ('/:id', (req, res) => {
 router.editService = ('/:id', (req, res) => {
     const id = req.params.customerId;
     const updateOps = { 
-        Services: req.body.Services,
-        Price: req.body.Price,
+        services: req.body.services,
+        price: req.body.price,
     };
-    Services.update({ $set: updateOps })
+    services.update({ $set: updateOps })
         .exec()
         .then(result => {
             res.status(200).json(result);

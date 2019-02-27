@@ -16,13 +16,13 @@ const isValidPrice = (price) => {
 const serviceInformationSchema = mongoose.Schema({
 
    _id: mongoose.Schema.Types.ObjectId,
-   Services: {
+   services: {
       type: String,
       required: [true, 'Service is required'],
       validate: [isValidService, 'Please enter a valid Service'],
    },
   
-   Price: {
+   price: {
       type: Number,
       required: [true, 'Price is required'],
       validate: [isValidPrice, 'Please enter a valid Price'],
@@ -31,6 +31,6 @@ const serviceInformationSchema = mongoose.Schema({
 
 
 
-export default mongoose.model('Services', serviceInformationSchema);
+export default mongoose.model('services', serviceInformationSchema);
 
 
