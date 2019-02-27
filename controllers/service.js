@@ -70,6 +70,7 @@ router.editService = ('/:id', (req, res) => {
     const updateOps = { 
         services: req.body.services,
         price: req.body.price,
+        time: req.body.time
     };
     services.update({ $set: updateOps })
         .exec()
