@@ -9,7 +9,6 @@ const router = express.Router();
 //send service data to db
 router.addServices = ('/services', (req, res, next) => {
     const serviceInformation = new services({
-        _id: new mongoose.Types.ObjectId(),
         services: req.body.services,
         price: req.body.price,
         time: req.body.time
