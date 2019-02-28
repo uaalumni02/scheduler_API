@@ -14,7 +14,6 @@ router.addAppointment = ('/', (req, res, next) => {
     const appointmentDate = req.body.appointmentDate;
     const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD hh:mmA').unix();
     const appointmentInformation = new Appointments({
-        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         appointmentDate: appointmentTimestamp,
         services: req.body.services
