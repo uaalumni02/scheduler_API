@@ -1,7 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import services from '../models/service';
+
+
+import * as db from '../db/db';
+import service from '../models/service';
 
 const router = express.Router();
 
@@ -33,20 +36,14 @@ router.addServices = ('/services', (req, res, next) => {
 
 
 
-//get all service data
-router.getAllServices = ('/services', (req, res) => {
-    services.find()
-        .exec()
-        .then(docs => {
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-});
+router.getAllServices = ('/services', async (req, res) => {
+    try {
+        const allServices = await db.getAllServices(service)
+        return res.status(200).json(allServices)
+    } catch(error) {
+        console.log(error.message)
+    }
+})
 
 //remove service from the db
 router.deleteService = ('/:id', (req, res) => {
