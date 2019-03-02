@@ -6,3 +6,13 @@ export const getAllServices = async model => {
     throw error;
   }
 }
+
+
+export const getAllAppointments = async model => {
+  try {
+    const allAppointments = await model.find({});
+    return allAppointments
+  } catch(error) {
+    throw error;
+  }
+}

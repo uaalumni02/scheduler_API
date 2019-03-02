@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import moment from 'moment';
 import Joi from 'joi';
 
+import * as db from '../db/db';
 
 import Appointments from '../models/appointment';
 
@@ -37,24 +38,15 @@ router.addAppointment = ('/', (req, res, next) => {
 });
 
 //show all appts
-router.getAllAppointments = ('/appointments', (req, res) => {
-    Appointments.find()
-        .exec()
-        .then(docs => {
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-});
+router.getAllAppointments = ('/appointments', async (req, res) => {
+    try {
+        const allAppointments = await db.getAllAppointments(Appointments)
+        return res.status(200).json(allAppointments)
+    } catch(error) {
+        console.log(error.message)
+    }
 
-
-
-
-
+})
 
 
 export default router;

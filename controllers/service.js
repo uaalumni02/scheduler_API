@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 
-
 import * as db from '../db/db';
 import service from '../models/service';
 
@@ -35,7 +34,7 @@ router.addServices = ('/services', (req, res, next) => {
 });
 
 
-
+//get all services from db
 router.getAllServices = ('/services', async (req, res) => {
     try {
         const allServices = await db.getAllServices(service)
