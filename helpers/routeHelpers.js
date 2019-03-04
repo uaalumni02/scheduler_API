@@ -16,7 +16,7 @@ return (req, res, next) => {
 
     schemas: {
         bodySchema: Joi.object().keys({
-            services: Joi.string().required().min(2).max(25),
+            name: Joi.string().required().min(2).max(25),
             price: Joi.number().required(),
             time: Joi.number().required()
         })

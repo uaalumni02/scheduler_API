@@ -9,29 +9,16 @@ const router = express.Router();
 
 
 //send service data to db
-router.addServices = ('/services', (req, res, next) => {
-    const serviceInformation = new services({
-        services: req.body.services,
-        price: req.body.price,
-        time: req.body.time
-    });
-    serviceInformation
-        .save()
-        .then(result => {
-            console.log(result)
-            if (result) {
-                res.status(201).json({
-                    message: 'Added to databse'
-                })
-            } else {
-                res.status(404).json({ message: "Please enter valid information" });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ error: err })
-        });
-});
+router.addServices = ('/services', async (req, res, next) => {
+    // {name, time, price}
+    const newServiceData = {...req.body};
+    try {
+        const addServices = await db.addNewService(service, newServiceData)
+        return res.status(200).json(addServices)
+    } catch(error) {
+        console.log(error.message)
+    }
+})
 
 
 //get all services from db

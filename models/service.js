@@ -19,12 +19,9 @@ const isValidPrice = (price) => {
 
 
 const serviceInformationSchema = mongoose.Schema({
-
-   services: {
-      _id: mongoose.Schema.Types.ObjectId,
+  
+   name: {
       type: String,
-      required: [true, 'Service is required'],
-      validate: [isValidService, 'Please enter a valid Service'],
    },
   
    price: {
@@ -38,6 +35,7 @@ const serviceInformationSchema = mongoose.Schema({
       required: [true, 'Time is required'],
       validate: [isValidTime, 'Please enter a valid Time'],
    },
+
 });
 
 

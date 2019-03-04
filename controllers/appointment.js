@@ -9,40 +9,32 @@ import Appointments from '../models/appointment';
 
 const router = express.Router();
 
-
 //add appts
-router.addAppointment = ('/', (req, res, next) => {
+router.addAppointment = ('/', async (req, res, next) => {
     const appointmentDate = req.body.appointmentDate;
-    const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD hh:mmA').unix();
-    const appointmentInformation = new Appointments({
+    const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD hh:mmA').unix()
+    const newAppointmentData = {
         name: req.body.name,
         appointmentDate: appointmentTimestamp,
         services: req.body.services
-    });
-    console.log(appointmentDate)
-    appointmentInformation
-    .save()
-    .then(result => {
-        if (result) {
-            res.status(201).json({
-                message: 'Added to databse'
-            })
-        } else {
-            res.status(404).json({ message: "Please enter valid information" });
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({ error: err })
-    });
-});
+    };
+    try {
+        const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
+        console.log(newAppointmentData)
+        return res.status(200).json(addAppointments)
+    } catch (error) {
+        console.log(error.message)
+    }
+})
+
+
 
 //show all appts
 router.getAllAppointments = ('/appointments', async (req, res) => {
     try {
         const allAppointments = await db.getAllAppointments(Appointments)
         return res.status(200).json(allAppointments)
-    } catch(error) {
+    } catch (error) {
         console.log(error.message)
     }
 
