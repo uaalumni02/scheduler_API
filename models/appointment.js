@@ -14,7 +14,6 @@ const isValidService = (service) => {
 const appointmentInformationSchema = mongoose.Schema({
 
   name: {
-    _id: mongoose.Schema.Types.ObjectId,
     type: String,
     required: [true, 'name is required'],
     min: 2,
