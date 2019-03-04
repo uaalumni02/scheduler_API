@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const isValidService = (service) => {
+const isValidName = (name) => {
    const regExp = /(?! )[A-Za-z\s]/i
-   return regExp.test(service)
+   return regExp.test(name)
  };
 
 
@@ -22,6 +22,8 @@ const serviceInformationSchema = mongoose.Schema({
   
    name: {
       type: String,
+      required: [true, 'Name is required'],
+      validate: [isValidName, 'Please enter a valid service Name'],
    },
   
    price: {
