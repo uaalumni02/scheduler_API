@@ -21,7 +21,7 @@ router.addServices = ('/services', async (req, res, next) => {
 
 
 //get all services from db
-router.getAllServices = ('/services', async (req, res) => {
+router.getAllServices = ('/', async (req, res) => {
     try {
         const allServices = await db.getAllServices(service)
         return res.status(200).json(allServices)
@@ -32,12 +32,9 @@ router.getAllServices = ('/services', async (req, res) => {
 
 //remove service from the db
 router.deleteService = ('/:id', async (req, res) => {
-    const id = req.params.id;
-    const idToDelete = {
-        _id: id
-    }
+    const { id } = req.params;
    try {
-    const serviceToDelete = await db.removeService(service, idToDelete)
+    const serviceToDelete = await db.removeService(service, id)
     console.log(serviceToDelete)
     return res.status(200).json(serviceToDelete)
     } catch(error) {
@@ -48,11 +45,8 @@ router.deleteService = ('/:id', async (req, res) => {
 //edit service
 router.editService = ('/:id', async (req, res) => {
     const id = req.params.id;
-    const updateService = {
-        name: req.body.name,
-        price: req.body.price,
-        time: req.body.time
-    };
+    const { name, price, time } = req.body,
+        updateService = { name, price, time };
     try {
         const serviceToEdit = await db.editService(service, updateService)
         return res.status(200).json(serviceToEdit)

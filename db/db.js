@@ -15,7 +15,7 @@ export const addNewAppointment = async (model, data) => {
   const newAppointment = new model({ ...data });
   return newAppointment.save()
     .then(res => {
-      const { name, appointmentDate, services } = res, appointmentData = { name, appointmentDate, services }
+      const { name, appointmentDate, service } = res, appointmentData = { name, appointmentDate, service }
       return appointmentData
     })
     .catch(error => {
@@ -43,9 +43,9 @@ export const getAllAppointments = async model => {
   }
 }
 
-export const removeService = async (model, data) => {
+export const removeService = async (model, id) => {
   try {
-    const deleteService = await model.findOneAndDelete({ ...data })
+    const deleteService = await model.findOneAndDelete({ _id: id })
     return deleteService
   } catch (error) {
     throw error

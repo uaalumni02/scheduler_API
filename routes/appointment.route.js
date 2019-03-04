@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
+
 //import model
 import Appointments from '../models/appointment';
 // import controller

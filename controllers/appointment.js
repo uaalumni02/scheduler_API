@@ -16,7 +16,7 @@ router.addAppointment = ('/', async (req, res, next) => {
     const newAppointmentData = {
         name: req.body.name,
         appointmentDate: appointmentTimestamp,
-        services: req.body.services
+        service: req.body.service
     };
     try {
         const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)

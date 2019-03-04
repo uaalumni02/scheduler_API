@@ -25,7 +25,7 @@ const appointmentInformationSchema = mongoose.Schema({
     required: true 
 },
 
-services: {
+service: {
   type: String,
   required: [true, 'Service is required'],
   validate: [isValidService, 'Please enter a valid Service'],
