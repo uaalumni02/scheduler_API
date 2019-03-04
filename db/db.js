@@ -45,10 +45,19 @@ export const getAllAppointments = async model => {
 
 export const removeService = async (model, data) => {
   try {
-    const deleteService = await model.findOneAndDelete({...data})
+    const deleteService = await model.findOneAndDelete({ ...data })
     return deleteService
   } catch (error) {
-    throw error 
+    throw error
+  }
+}
+
+export const editService = async (model, data) => {
+  try {
+    const editService = await model.update({ ...data })
+    return data
+  } catch (error) {
+    throw error
   }
 }
 

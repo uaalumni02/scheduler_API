@@ -20,7 +20,6 @@ router.addAppointment = ('/', async (req, res, next) => {
     };
     try {
         const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
-        console.log(newAppointmentData)
         return res.status(200).json(addAppointments)
     } catch (error) {
         console.log(error.message)

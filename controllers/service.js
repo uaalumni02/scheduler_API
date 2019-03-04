@@ -46,24 +46,19 @@ router.deleteService = ('/:id', async (req, res) => {
 });
 
 //edit service
-router.editService = ('/:id', (req, res) => {
-    const id = req.params.customerId;
-    const updateOps = {
-        services: req.body.services,
+router.editService = ('/:id', async (req, res) => {
+    const id = req.params.id;
+    const updateService = {
+        name: req.body.name,
         price: req.body.price,
         time: req.body.time
     };
-    services.update({ $set: updateOps })
-        .exec()
-        .then(result => {
-            res.status(200).json(result);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
+    try {
+        const serviceToEdit = await db.editService(service, updateService)
+        return res.status(200).json(serviceToEdit)
+        } catch(error) {
+            console.log(error.message)
+        }
 });
 
 
