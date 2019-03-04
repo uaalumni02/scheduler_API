@@ -43,3 +43,14 @@ export const getAllAppointments = async model => {
   }
 }
 
+export const removeService = async (model, data) => {
+  try {
+    const deleteService = await model.findOneAndDelete({...data})
+    return deleteService
+  } catch (error) {
+    throw error 
+  }
+}
+
+
+

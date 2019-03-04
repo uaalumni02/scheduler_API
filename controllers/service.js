@@ -10,7 +10,6 @@ const router = express.Router();
 
 //send service data to db
 router.addServices = ('/services', async (req, res, next) => {
-    // {name, time, price}
     const newServiceData = {...req.body};
     try {
         const addServices = await db.addNewService(service, newServiceData)
@@ -32,20 +31,18 @@ router.getAllServices = ('/services', async (req, res) => {
 })
 
 //remove service from the db
-router.deleteService = ('/:id', (req, res) => {
+router.deleteService = ('/:id', async (req, res) => {
     const id = req.params.id;
-    services.findOneAndDelete({ '_id': id })
-        .exec()
-        .then(result => {
-            res.status(200).json(result);
-
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
+    const idToDelete = {
+        _id: id
+    }
+   try {
+    const serviceToDelete = await db.removeService(service, idToDelete)
+    console.log(serviceToDelete)
+    return res.status(200).json(serviceToDelete)
+    } catch(error) {
+        console.log(error.message)
+    }
 });
 
 //edit service
