@@ -2,10 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 
+
 //import model
 import Appointments from '../models/appointment';
 // import controller
-import appointmentController from '../controllers/appointment';
+import appointmentController from '../controllers/Appointment';
 
 const router = express.Router();
 
