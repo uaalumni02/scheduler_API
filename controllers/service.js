@@ -16,7 +16,7 @@ class Service {
             const addServices = await db.addNewService(service, newServiceData)
             return res.status(200).json(addServices)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
     static async getAllServices(req, res) {
@@ -24,17 +24,16 @@ class Service {
             const allServices = await db.getAllServices(service)
             return res.status(200).json(allServices)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
     static async deleteService(req, res) {
         const { id } = req.params;
         try {
             const serviceToDelete = await db.removeService(service, id)
-            console.log(serviceToDelete)
             return res.status(200).json(serviceToDelete)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
     static async editService(req, res) {
@@ -45,7 +44,7 @@ class Service {
             const serviceToEdit = await db.editService(service, updateService)
             return res.status(200).json(serviceToEdit)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
 }
