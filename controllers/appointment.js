@@ -25,7 +25,7 @@ class Appointment {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
             return res.status(200).json(addAppointments)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
     static async getAllAppointments(req, res) {
@@ -33,7 +33,7 @@ class Appointment {
             const allAppointments = await db.getAllAppointments(Appointments)
             return res.status(200).json(allAppointments)
         } catch (error) {
-            console.log(error.message)
+            res.status(500).json({ error: error })
         }
     }
 }
