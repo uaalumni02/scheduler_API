@@ -12,8 +12,10 @@ const router = express.Router();
 class Service {
     static async addService(req, res) {
         const newServiceData = { ...req.body };
+        const currentTime = new Date();
+        const timestamp = currentTime.valueOf()
         try {
-            const addServices = await db.addNewService(service, newServiceData)
+            const addServices = await db.addNewService(service, newServiceData, timestamp)
             return res.status(200).json(addServices)
         } catch (error) {
             res.status(500).json({ error: error })
@@ -38,10 +40,14 @@ class Service {
     }
     static async editService(req, res) {
         const id = req.params.id;
+        const newServiceData = { ...req.body };
+        const currentTime = new Date();
+        const timestamp = currentTime.valueOf()
+        console.log(timestamp)
         const { name, price, time } = req.body,
             updateService = { name, price, time };
         try {
-            const serviceToEdit = await db.editService(service, updateService)
+            const serviceToEdit = await db.editService(service, updateService, timestamp)
             return res.status(200).json(serviceToEdit)
         } catch (error) {
             res.status(500).json({ error: error })
