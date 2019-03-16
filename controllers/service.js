@@ -1,13 +1,5 @@
-import express from 'express';
-import mongoose from 'mongoose';
-
-
 import * as db from '../db/db';
 import service from '../models/service';
-
-const router = express.Router();
-
-'use strict'
 
 class Service {
     static async addService(req, res) {
@@ -39,8 +31,6 @@ class Service {
         }
     }
     static async editService(req, res) {
-        const id = req.params.id;
-        const newServiceData = { ...req.body };
         const currentTime = new Date();
         const timestamp = currentTime.valueOf()
         console.log(timestamp)

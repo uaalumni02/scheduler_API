@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose, { MongooseDocument } from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
@@ -11,6 +11,8 @@ import serviceRoutes from './routes/service.route';
 import appointmentRoutes from './routes/appointment.route';
 
 const app = express();
+
+mongoose.Promise = global.Promise
 
 const port = process.env.PORT || 3000;
 

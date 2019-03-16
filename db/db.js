@@ -16,13 +16,13 @@ export const addNewAppointment = async (model, data) => {
   return newAppointment.save()
     .then(res => {
       const { name, appointmentDate, service } = res, appointmentData = { name, appointmentDate, service }
-      return appointmentData
+      return res
     })
+
     .catch(error => {
       return { error }
     })
 }
-
 
 export const getAllServices = async model => {
   try {
@@ -36,7 +36,7 @@ export const getAllServices = async model => {
 
 export const getAllAppointments = async model => {
   try {
-    const allAppointments = await model.find({});
+    const allAppointments = await model.find({}).populate('service').exec()
     return allAppointments
   } catch (error) {
     throw error;

@@ -1,5 +1,3 @@
-import express from 'express';
-import mongoose from 'mongoose';
 import moment from 'moment';
 import Joi from 'joi';
 
@@ -7,10 +5,6 @@ import * as db from '../db/db';
 
 import Appointments from '../models/appointment';
 
-
-const router = express.Router();
-
-'use strict'
 
 class Appointment {
     static async addAppointment(req, res) {
@@ -37,5 +31,6 @@ class Appointment {
         }
     }
 }
+
 
 export default Appointment;
