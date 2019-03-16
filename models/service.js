@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+
 const isValidName = (name) => {
    const regExp = /(?! )[A-Za-z\s]/i
    return regExp.test(name)
@@ -19,6 +20,10 @@ const isValidTime = (time) => {
 
 
 const serviceInformationSchema = mongoose.Schema({
+   __v: {
+      type: Number,
+      select: false
+   },
    name: {
       type: String,
       required: [true, 'Name is required'],
@@ -36,11 +41,9 @@ const serviceInformationSchema = mongoose.Schema({
       required: [true, 'Time is required'],
       validate: [isValidTime, 'Please enter a valid Time'],
    },
-   
 });
 
 
-
-export default mongoose.model('services', serviceInformationSchema,);
+export default mongoose.model('services', serviceInformationSchema);
 
 

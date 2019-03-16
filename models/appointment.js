@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { version } from 'mongoose';
 const Schema = mongoose.Schema;
 
 const isValidCustomerName = (name) => {
@@ -12,6 +12,10 @@ const isValidService = (service) => {
 };
 
 const appointmentInformationSchema = mongoose.Schema({
+  __v: {
+    type: Number,
+    select: false
+  },
   name: {
     type: String,
     required: [true, 'name is required'],
@@ -23,11 +27,10 @@ const appointmentInformationSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-
   service: {
     type: Schema.Types.ObjectId,
-    ref: 'services'
-}
+    ref: 'services',
+  },
 
 });
 
