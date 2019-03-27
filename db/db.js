@@ -18,7 +18,6 @@ export const addNewAppointment = async (model, data) => {
       const { name, appointmentDate, service } = res, appointmentData = { name, appointmentDate, service }
       return res
     })
-
     .catch(error => {
       return { error }
     })

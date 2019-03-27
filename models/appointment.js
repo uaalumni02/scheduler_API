@@ -24,14 +24,22 @@ const appointmentInformationSchema = mongoose.Schema({
     validate: [isValidCustomerName, 'Please enter valid customer name'],
   },
   appointmentDate: {
-    type: Number,
+    type: Date,
+    required: true,
+  },
+  startTime: {
+    type: String,
+    required: true,
+  },
+  endTime: {
+    type: String,
     required: true,
   },
   service: {
     type: Schema.Types.ObjectId,
     ref: 'services',
   },
-
 });
+
 
 export default mongoose.model('Appointments', appointmentInformationSchema);
