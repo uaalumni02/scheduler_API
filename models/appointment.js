@@ -24,15 +24,15 @@ const appointmentInformationSchema = mongoose.Schema({
     validate: [isValidCustomerName, 'Please enter valid customer name'],
   },
   appointmentDate: {
-    type: Date,
+    type: Number,
     required: true,
   },
   startTime: {
-    type: String,
+    type: Number,
     required: true,
   },
   endTime: {
-    type: String,
+    type: Number,
     required: true,
   },
   service: {

@@ -12,7 +12,6 @@ class Appointment {
         const startTime = req.body.startTime;
         const endTime = req.body.endTime;
         const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD').unix()
-        console.log(appointmentTimestamp)
         const startTimeTimestamp = moment(startTime, 'HH:mm:ss').unix()
         const endTimeTimestamp = moment(endTime, 'HH:mm:ss A').unix()
 
@@ -23,9 +22,10 @@ class Appointment {
             endTime: endTimeTimestamp,
             service: req.body.service
         };
+        console.log(newAppointmentData)
         try {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
-            return res.status(200).json(addAppointments)
+            return res.status(200).json(newAppointmentData)
         } catch (error) {
             res.status(500).json({ error: error })
         }
