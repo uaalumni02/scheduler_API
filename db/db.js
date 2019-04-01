@@ -60,5 +60,12 @@ export const editService = async (model, data) => {
   }
 }
 
-
+export const getApptByDate = async (model, appointmentDate) => {
+  try {
+    const dailyAppt = await model.findOne({ appointmentDate: appointmentDate })
+    return dailyAppt
+  } catch (error) {
+    throw error;
+  }
+}
 

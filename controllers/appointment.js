@@ -1,10 +1,8 @@
 import moment from 'moment';
-import Joi from 'joi';
 
 import * as db from '../db/db';
 
 import Appointments from '../models/appointment';
-
 
 class Appointment {
     static async addAppointment(req, res) {
@@ -22,7 +20,6 @@ class Appointment {
             endTime: endTimeTimestamp,
             service: req.body.service
         };
-        console.log(newAppointmentData)
         try {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
             return res.status(200).json(newAppointmentData)
@@ -38,7 +35,15 @@ class Appointment {
             res.status(500).json({ error: error })
         }
     }
+    static async getApptByDate(req, res) {
+        const { appointmentDate } = req.params;
+        try {
+            const allAppointments = await db.getApptByDate(Appointments, appointmentDate)
+            return res.status(200).json(allAppointments)
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
 }
-
 
 export default Appointment;
