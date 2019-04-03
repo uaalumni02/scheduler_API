@@ -10,7 +10,6 @@ export const addNewService = async (model, data) => {
     })
 }
 
-
 export const addNewAppointment = async (model, data) => {
   const newAppointment = new model({ ...data });
   return newAppointment.save()
@@ -22,6 +21,7 @@ export const addNewAppointment = async (model, data) => {
       return { error }
     })
 }
+
 
 export const getAllServices = async model => {
   try {
