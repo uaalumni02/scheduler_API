@@ -51,6 +51,7 @@ export const removeService = async (model, id) => {
   }
 }
 
+
 export const editService = async (model, data) => {
   try {
     const editService = await model.update({ ...data })
@@ -62,9 +63,8 @@ export const editService = async (model, data) => {
 
 export const getApptByDate = async (model, appointmentDate) => {
   try {
-    const dailyAppt = await model.find({ appointmentDate: appointmentDate })
+    const dailyAppt = await model.find({ appointmentDate })
     return dailyAppt
-    console.log(dailyAppt.startTime)
   } catch (error) {
     throw error;
   }
