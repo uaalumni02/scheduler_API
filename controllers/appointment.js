@@ -18,7 +18,7 @@ class Appointment {
         const appointmentDate = req.body.appointmentDate;
         const startTime = req.body.startTime;
         const endTime = req.body.endTime;
-        const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD').unix()
+        const appointmentTimestamp = moment(appointmentDate, 'MM-DD-YYYY').unix()
         const startTimeTimestamp = moment(startTime, 'HH:mm:ss').unix()
         const endTimeTimestamp = moment(endTime, 'HH:mm:ss A').unix()
 
@@ -30,7 +30,9 @@ class Appointment {
             endTime: endTimeTimestamp,
             service: req.body.service
         };
-        const userMessage = newAppointmentData.name + ', your appointment is on ' + newAppointmentData.appointmentDate + ' at ' + newAppointmentData.startTime;
+        const dateString = moment.unix(newAppointmentData.appointmentDate).format('MM-DD-YYYY');
+        const timeString = moment.unix(newAppointmentData.startTime).format('HH:mm:ss')
+        const userMessage = newAppointmentData.name + ', your appointment is on ' + dateString + ' at ' + timeString;
         try {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
             Twilio.messages.create({
