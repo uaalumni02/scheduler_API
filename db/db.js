@@ -15,7 +15,7 @@ export const addNewAppointment = async (model, data) => {
   const newAppointment = new model({ ...data });
   return newAppointment.save()
     .then(res => {
-      const { name, appointmentDate, service } = res, appointmentData = { name, appointmentDate, service }
+      const { name, phone, appointmentDate, service } = res, appointmentData = { name, phone, appointmentDate, service }
       return res
     })
     .catch(error => {
