@@ -1,17 +1,10 @@
 import moment from 'moment';
-import twilio from 'twilio';
 
 import * as db from '../db/db';
 
 import Appointments from '../models/appointment';
 
-const TWILIO_ID = process.env.TWILIO_ACCOUNT_ID;
-const TWILIO_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_PHONE = process.env.TWILIO_PHONE_NUMBER;
-
-
-const Twilio = twilio(TWILIO_ID, TWILIO_TOKEN);
-
+import handler from '../helpers/twilioHelper'
 
 class Appointment {
     static async addAppointment(req, res) {
@@ -30,16 +23,15 @@ class Appointment {
             endTime: endTimeTimestamp,
             service: req.body.service
         };
+        //converting time stamp back readable 
         const dateString = moment.unix(newAppointmentData.appointmentDate).format('MM-DD-YYYY');
         const timeString = moment.unix(newAppointmentData.startTime).format('HH:mm:ss')
+       
         const userMessage = newAppointmentData.name + ', your appointment is on ' + dateString + ' at ' + timeString;
         try {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
-            Twilio.messages.create({
-                body: userMessage,
-                to: newAppointmentData.phone,
-                from: TWILIO_PHONE,
-            })
+            // calling twilio helper function
+            handler(userMessage, newAppointmentData.phone)
             return res.status(200).json(addAppointments)
         }
         catch (error) {
