@@ -9,6 +9,7 @@ import cors from 'cors';
 //import routes
 import serviceRoutes from './routes/service.route';
 import appointmentRoutes from './routes/appointment.route';
+import timeRoutes from './routes/time.route';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors());
 //middleware to utilize routes
 app.use('/services', serviceRoutes);
 app.use('/appointments', appointmentRoutes);
+app.use('/times', timeRoutes);
 
 
 const DB_URL = process.env.MONGO_URL;

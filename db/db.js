@@ -22,6 +22,27 @@ export const addNewAppointment = async (model, data) => {
     })
 }
 
+export const addNewTime = async (model, data) => {
+  const newTime = new model({ ...data });
+  return newTime.save()
+    .then(res => {
+      const { startTime } = res, timeData = { startTime }
+      return res
+    })
+    .catch(error => {
+      return { error }
+    })
+}
+
+export const getAllTimes = async model => {
+  try {
+    const allTimes = await model.find({});
+    return allTimes
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 export const getAllServices = async model => {
   try {

@@ -18,6 +18,7 @@ class Appointment {
         const newAppointmentData = {
             name: req.body.name,
             phone: req.body.phone,
+            email: req.body.email,
             appointmentDate: appointmentTimestamp,
             startTime: startTimeTimestamp,
             endTime: endTimeTimestamp,

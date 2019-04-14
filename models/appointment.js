@@ -16,6 +16,11 @@ const isValidService = (service) => {
   return regExp.test(service)
 };
 
+const isValidEmail = (email) => {
+  const regExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})$/i;
+  return regExp.test(email)
+};
+
 const appointmentInformationSchema = mongoose.Schema({
   __v: {
     type: Number,
@@ -33,6 +38,11 @@ const appointmentInformationSchema = mongoose.Schema({
     required: [true, 'Phone number is requrired'],
     validate: [isValidPhoneNumber, 'Please enter a valid phone number'],
   },
+  email: {
+    type: String, 
+    required: [true,'Email address is required'],
+    validate: [isValidEmail, 'Please enter a valid email address'],
+},
   appointmentDate: {
     type: Number,
     required: true,
