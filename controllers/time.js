@@ -6,14 +6,12 @@ import Times from '../models/time';
 
 class Time {
     static async addTime(req, res) {
-        const startTime = req.body.startTime;
-        const startTimeTimestamp = moment(startTime, 'HH:mm:ss').unix()
 
         const newTimeData = {
-            startTime: startTimeTimestamp,
+            appointmentDate: req.body.appointmentDate,
+            startTime: req.body.startTime
         };
-        //converting time stamp back readable 
-        const timeString = moment.unix(newTimeData.startTime).format('HH:mm:ss')
+
         try {
             const addTimes = await db.addNewTime(Times, newTimeData)
             return res.status(200).json(addTimes)
@@ -26,6 +24,15 @@ class Time {
         try {
             const allTimes = await db.getAllTimes(Times)
             return res.status(200).json(allTimes)
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
+    static async getTimesByDate(req, res) {
+        const { appointmentDate } = req.params;
+        try {
+            const timesByDate = await db.getTimesByDate(Times, appointmentDate)
+            return res.status(200).json(timesByDate)
         } catch (error) {
             res.status(500).json({ error: error })
         }

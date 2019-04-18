@@ -6,8 +6,12 @@ const timeInformationSchema = mongoose.Schema({
         type: Number,
         select: false
     },
+    appointmentDate: {
+        type: String,
+        required: true,
+      },
     startTime: {
-        type: Number,
+        type: String,
         required: true,
     },
 

@@ -26,7 +26,7 @@ export const addNewTime = async (model, data) => {
   const newTime = new model({ ...data });
   return newTime.save()
     .then(res => {
-      const { startTime } = res, timeData = { startTime }
+      const { appointmentDate, startTime } = res, timeData = { appointmentDate, startTime }
       return res
     })
     .catch(error => {
@@ -82,10 +82,10 @@ export const editService = async (model, data) => {
   }
 }
 
-export const getApptByDate = async (model, appointmentDate) => {
+export const getTimesByDate = async (model, appointmentDate) => {
   try {
-    const dailyAppt = await model.find({ appointmentDate })
-    return dailyAppt
+    const dailyTimes = await model.find({ appointmentDate })
+    return dailyTimes
   } catch (error) {
     throw error;
   }

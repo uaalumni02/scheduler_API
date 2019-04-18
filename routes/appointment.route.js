@@ -15,7 +15,4 @@ router.post('/', appointmentController.addAppointment);
 //get all appts
 router.get('/', appointmentController.getAllAppointments);
 
-//get appt by date
-router.get('/:appointmentDate', appointmentController.getApptByDate);
-
 export default router;
