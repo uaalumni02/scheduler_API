@@ -13,7 +13,7 @@ class Appointment {
             name: req.body.name,
             phone: req.body.phone,
             email: req.body.email,
-            service: req.body.service
+            service: req.body.service,
         };
         const userMessage = newAppointmentData.name + ', your appointment has been successfully scheduled with De\'Meco'
         try {

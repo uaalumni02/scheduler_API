@@ -39,10 +39,18 @@ const appointmentInformationSchema = mongoose.Schema({
     validate: [isValidPhoneNumber, 'Please enter a valid phone number'],
   },
   email: {
-    type: String, 
-    required: [true,'Email address is required'],
+    type: String,
+    required: [true, 'Email address is required'],
     validate: [isValidEmail, 'Please enter a valid email address'],
-},
+  },
+  date: {
+    type: Number,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
   service: {
     type: Schema.Types.ObjectId,
     ref: 'services',
