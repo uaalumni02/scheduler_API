@@ -26,7 +26,7 @@ export const addNewTime = async (model, data) => {
   const newTime = new model({ ...data });
   return newTime.save()
     .then(res => {
-      const { appointmentDate, startTime } = res, timeData = { appointmentDate, startTime }
+      const {  time } = res, timeData = { time }
       return res
     })
     .catch(error => {

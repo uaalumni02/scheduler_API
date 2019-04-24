@@ -8,15 +8,15 @@ const timesInformationSchema = mongoose.Schema({
        type: Number,
        select: false
     },
-    name: {
+    time: {
        type: String,
-       required: [true, 'Name is required'],
-       validate: [isValidName, 'Please enter a valid service Name'],
+       required: true,
+       
     },
  });
  
  
- export default mongoose.model('times', timesInformationSchema);
+ export default mongoose.model('Times', timesInformationSchema);
  
  
  
