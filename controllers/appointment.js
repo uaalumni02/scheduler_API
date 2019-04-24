@@ -8,17 +8,22 @@ import handler from '../helpers/twilioHelper'
 
 class Appointment {
     static async addAppointment(req, res) {
-
+        const appointmentDate = req.body.appointmentDate;
+        const appointmentTimestamp = moment(appointmentDate, 'MM-DD-YYYY').unix()
+      
         const newAppointmentData = {
             name: req.body.name,
             phone: req.body.phone,
             email: req.body.email,
-            service: req.body.service,
+            appointmentDate: appointmentTimestamp,
+            startTime: req.body.startTime,
+            service: req.body.service
         };
-        const userMessage = newAppointmentData.name + ', your appointment has been successfully scheduled with De\'Meco'
+        const dateString = moment.unix(newAppointmentData.appointmentDate).format('MM-DD-YYYY');
+        const timeMessage = newAppointmentData.startTime
+        const userMessage = newAppointmentData.name + ', your appointment is on ' + dateString + ' at ' + timeMessage ;
         try {
             const addAppointments = await db.addNewAppointment(Appointments, newAppointmentData)
-            // calling twilio helper function
             handler(userMessage, newAppointmentData.phone)
             return res.status(200).json(addAppointments)
         }
@@ -26,10 +31,20 @@ class Appointment {
             res.status(500).json({ error: error })
         }
     }
+            
     static async getAllAppointments(req, res) {
         try {
             const allAppointments = await db.getAllAppointments(Appointments)
             return res.status(200).json(allAppointments)
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
+    static async getApptsByDate(req, res) {
+        const { appointmentDate } = req.params;
+        try {
+            const apptsByDate = await db.getApptsByDate(Appointments, appointmentDate)
+            return res.status(200).json(apptsByDate)
         } catch (error) {
             res.status(500).json({ error: error })
         }

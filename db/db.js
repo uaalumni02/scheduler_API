@@ -14,7 +14,7 @@ export const addNewAppointment = async (model, data) => {
   const newAppointment = new model({ ...data });
   return newAppointment.save()
     .then(res => {
-      const { name, phone, appointmentDate, service } = res, appointmentData = { name, phone, appointmentDate, service }
+      const { name, phone, email, appointmentDate, startTime, service } = res, appointmentData = { name, phone, email, appointmentDate, startTime, service }
       return res
     })
     .catch(error => {
@@ -91,3 +91,11 @@ export const getTimesByDate = async (model, appointmentDate) => {
   }
 }
 
+export const getApptsByDate = async (model, appointmentDate) => {
+  try {
+    const appointments = await model.find({ appointmentDate })
+    return appointments
+  } catch (error) {
+    throw error;
+  }
+}
