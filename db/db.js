@@ -34,16 +34,6 @@ export const addNewTime = async (model, data) => {
     })
 }
 
-export const getAllTimes = async model => {
-  try {
-    const allTimes = await model.find({});
-    return allTimes
-  } catch (error) {
-    throw error;
-  }
-}
-
-
 export const getAllServices = async model => {
   try {
     const allServices = await model.find({});
@@ -79,15 +69,6 @@ export const editService = async (model, data) => {
     return data
   } catch (error) {
     throw error
-  }
-}
-
-export const getTimesByDate = async (model, appointmentDate) => {
-  try {
-    const dailyTimes = await model.find({ appointmentDate })
-    return dailyTimes
-  } catch (error) {
-    throw error;
   }
 }
 

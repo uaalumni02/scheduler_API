@@ -24,8 +24,6 @@ app.use(cors());
 //middleware to utilize routes
 app.use('/services', serviceRoutes);
 app.use('/appointments', appointmentRoutes);
-app.use('/times', timeRoutes);
-
 
 const DB_URL = process.env.MONGO_URL;
 
