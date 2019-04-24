@@ -14,6 +14,14 @@ class Time {
             res.status(500).json({ error: error })
         }
     }
+    static async getAllTimes(req, res) {
+        try {
+            const allTimes = await db.getAllTimes(Times)
+            return res.status(200).json(allTimes)
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
 }
 
 export default Time;

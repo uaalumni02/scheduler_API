@@ -43,6 +43,14 @@ export const getAllServices = async model => {
   }
 }
 
+export const getAllTimes = async model => {
+  try {
+    const allTimes = await model.find({});
+    return allTimes
+  } catch (error) {
+    throw error;
+  }
+}
 
 export const getAllAppointments = async model => {
   try {
