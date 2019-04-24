@@ -9,7 +9,6 @@ import cors from 'cors';
 //import routes
 import serviceRoutes from './routes/service.route';
 import appointmentRoutes from './routes/appointment.route';
-import timeRoutes from './routes/time.route';
 
 const app = express();
 
