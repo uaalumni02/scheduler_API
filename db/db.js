@@ -88,3 +88,22 @@ export const getApptsByDate = async (model, appointmentDate) => {
     throw error;
   }
 }
+export const addNewMessage = async (model, data) => {
+  const newMessage = new model({ ...data });
+  return newMessage.save()
+    .then(res => {
+      const { firstName, lastName, email, phone, message } = res, messageData = { firstName, lastName, email, phone, message }
+      return messageData
+    })
+    .catch(error => {
+      return { error }
+    })
+}
+export const getAllMessages = async model => {
+  try {
+    const allMessages = await model.find({});
+    return allMessages
+  } catch (error) {
+    throw error;
+  }
+}

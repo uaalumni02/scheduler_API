@@ -21,10 +21,6 @@ const isValidPhoneNumber = (phone) => {
     return regExp.test(phone)
 };
 
-const isValidMessage = (mesage) => {
-    const regExp = /^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$/i
-    return regExp.test(message)
-}
 
 const contactInformationSchema = mongoose.Schema({
     __v: {
@@ -59,8 +55,6 @@ const contactInformationSchema = mongoose.Schema({
         type: String,
         required: [true, 'message is requrired'],
         min: 2,
-        max: 150,
-        validate: [isValidMessage, 'Please enter a valid message'],
     },
     
 });
