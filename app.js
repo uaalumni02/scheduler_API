@@ -11,6 +11,7 @@ import serviceRoutes from './routes/service.route';
 import appointmentRoutes from './routes/appointment.route';
 import timeRoutes from './routes/time.route';
 import contactRoutes from './routes/contact.route';
+import passwordRoutes from './routes/password.route';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/services', serviceRoutes);
 app.use('/appointments', appointmentRoutes);
 app.use('/times', timeRoutes);
 app.use('/contacts', contactRoutes);
+app.use('/passwords', passwordRoutes);
 
 const DB_URL = process.env.MONGO_URL;
 

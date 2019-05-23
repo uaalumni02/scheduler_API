@@ -8,7 +8,6 @@ import handler from '../helpers/twilioHelper'
 
 class Appointment {
     static async addAppointment(req, res) {
-        console.log('requestBody', req.body)
         const appointmentDate = req.body.appointmentDate;
         const appointmentTimestamp = moment(appointmentDate, 'YYYY-MM-DD').unix()
         const newAppointmentData = {

@@ -26,7 +26,7 @@ export const addNewTime = async (model, data) => {
   const newTime = new model({ ...data });
   return newTime.save()
     .then(res => {
-      const {  time } = res, timeData = { time }
+      const { time } = res, timeData = { time }
       return res
     })
     .catch(error => {
@@ -103,6 +103,26 @@ export const getAllMessages = async model => {
   try {
     const allMessages = await model.find({});
     return allMessages
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const addNewPassword = async (model, data) => {
+  const newPassword = new model({ ...data });
+  return newPassword.save()
+    .then(res => {
+      const { password } = res, appointmentData = { password }
+      return res
+    })
+    .catch(error => {
+      return { error }
+    })
+}
+export const getAllPasswords = async model => {
+  try {
+    const allPasswords = await model.find({});
+    return allPasswords
   } catch (error) {
     throw error;
   }
