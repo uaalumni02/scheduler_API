@@ -127,3 +127,12 @@ export const getAllPasswords = async model => {
     throw error;
   }
 }
+
+export const getPswdByEntry = async (model, password) => {
+  try {
+    const pswdEntry = await model.find({ password })
+    return pswdEntry
+  } catch (error) {
+    throw error;
+  }
+}

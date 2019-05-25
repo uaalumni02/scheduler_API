@@ -23,6 +23,15 @@ class Password {
             res.status(500).json({ error: error })
         }
     }
+    static async getPswdByEntry(req, res) {
+        const { password } = req.params;
+        try {
+            const pswdEntry = await db.getPswdByEntry(Passwords, password)
+            return res.status(200).json(pswdEntry)
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
 }
 
 export default Password
