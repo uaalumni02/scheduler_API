@@ -1,6 +1,7 @@
 import * as db from '../db/db';
 import Passwords from '../models/password';
 
+import Appointments from '../models/appointment';
 
 class Password {
     static async addPassword(req, res) {
@@ -27,9 +28,12 @@ class Password {
         const { password } = req.params;
         try {
             const pswdEntry = await db.getPswdByEntry(Passwords, password)
-            return res.status(200).json(pswdEntry)
+            const allAppointments = await db.getAllAppointments(Appointments)
+            if(password === pswdEntry[0].password) {
+                return res.status(200).json(allAppointments)
+            } 
         } catch (error) {
-            res.status(500).json({ error: error })
+            res.status(500).json({ error: 'incorrect password' })
         }
     }
 }
