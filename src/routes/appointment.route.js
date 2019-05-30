@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 //import model
 import Appointments from '../models/appointment';
 // import controller
-import appointmentController from '../controllers/Appointment';
+import appointmentController from '../controllers/appointment';
 
 const router = express.Router();
 
