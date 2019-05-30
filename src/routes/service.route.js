@@ -6,7 +6,7 @@ const { validateBody, schemas } = require('../helpers/routeHelpers');
 //import model
 import Services from '../models/service';
 // import controller
-import serviceController from './controllers/Service';
+import serviceController from '../controllers/Service';
 
 const router = express.Router();
 
