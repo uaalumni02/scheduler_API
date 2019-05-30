@@ -22,7 +22,8 @@
     "mongoose": "^5.4.13",
     "node-gmailer": "^1.0.1",
     "nodemon": "^1.18.10",
-    "twilio": "^3.30.0"
+    "twilio": "^3.30.0",
+    "@babel/runtime": "^7.3.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
