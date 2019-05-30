@@ -33,7 +33,7 @@ app.use('/passwords', passwordRoutes);
 const DB_URL = process.env.MONGO_URL;
 
 // Connect to mongoose
-mongoose.connect(DB_URL, (err) => {
+mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
     if (err)
         return console.log('Unable to Connect to MongoDB')
     return console.log('Connection Successful')
